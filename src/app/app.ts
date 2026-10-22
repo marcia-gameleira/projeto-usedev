@@ -1,3 +1,4 @@
+import { Product, products } from './product';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -8,5 +9,10 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('ng-usedev');
+  products = signal<Product[]>(products);
+  totalCartItens = signal(0);
+  
+  addToCart() {
+    this.totalCartItens.update(value => value + 1);
+  }
 }
